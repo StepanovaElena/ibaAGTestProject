@@ -30,7 +30,10 @@
                     [applyCss]="true">
           </svg-icon>
         </div>
-        <input class="search-box__input" type="text" id="search" [(ngModel)]="search" (input)="displayOpen($event)">
+        <input class="search-box__input" type="text" id="search"
+               [(ngModel)]="search"
+               [ngModelOptions]="{standalone: true}"
+               (input)="displayOpen($event)">
       </label>
     </div>
     <details class="details" [open]="open">

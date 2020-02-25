@@ -6,8 +6,8 @@ import {Environment} from './interface';
 
 export const environment: Environment = {
   production: false,
-  apiKey: ' ', //your API key here
-  fbDbUrl: ' ' // your firebase DB url here
+  apiKey: ' ', //here your own APIKey
+  fbDbUrl: ' ', //here your own DB url
 };
 
 /*

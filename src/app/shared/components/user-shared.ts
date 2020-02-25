@@ -3,10 +3,10 @@ import {EffectivePermissions, Group, Permissions} from './interfases';
 
 export class UserShared {
 
-  protected permissions: Permissions[] = [];
-  protected groups: Group[] = [];
+  permissions: Permissions[] = [];
+  groups: Group[] = [];
+  form: FormGroup;
 
-  protected form: FormGroup;
   protected effectivePermissions = new Set<EffectivePermissions>();
 
   private get permissionsArray(): FormArray {
