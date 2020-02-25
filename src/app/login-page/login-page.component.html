@@ -1,0 +1,46 @@
+<section class="login-page-content">
+  <header class="login-page-header">
+    <h2>Log in to the work panel</h2>
+  </header>
+  <div class="login-page-content-flex">
+    <div class="login-page-info">
+      <h3 class="login-page-info__h3">Enter the following information for login</h3>
+      <p class="login-page-info__p">Email: admin@mail.ru</p>
+      <p  class="login-page-info__p">Password: 123456</p>
+    </div>
+    <div class="login-page-form">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="login-page-alert login-page-alert-danger" *ngIf="auth.error$ | async as error">
+          {{ error }}
+        </div>
+        <div class="login-page-alert login-page-alert-info" *ngIf="message">
+          {{ message }}
+        </div>
+
+        <div class="group-form__div">
+          <label class="group-form__label"
+                 for="email"
+                 [ngClass]="{label_display:form.get('email').touched}">Email</label>
+          <input class="group-form__input" id="email" type="email" placeholder="Email" formControlName="email">
+          <div *ngIf="form.get('email').touched && form.get('email').invalid">
+            <p class="group-form__p" *ngIf="form.get('email').errors.required">Enter email!</p>
+          </div>
+        </div>
+        <div class="group-form__div">
+          <label class="group-form__label"
+                 for="password"
+                 [ngClass]="{label_display:form.get('password').touched}">Password</label>
+          <input class="group-form__input" id="password" type="password" formControlName="password"
+                 placeholder="Password">
+          <div *ngIf="form.get('password').touched && form.get('password').invalid">
+            <p class="group-form__p" *ngIf="form.get('password').errors.required">Enter password!</p>
+          </div>
+        </div>
+        <button class="button login-page-form__button" type="submit" [disabled]="form.invalid || submitted">Log In
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+

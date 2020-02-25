@@ -1,0 +1,86 @@
+<nav class="navbar">
+  <ul *ngIf="auth.isAuthenticated()" class="navbar-menu">
+    <li>
+      <a class="navbar-menu__a" (click)="visible = !visible" [@button]="visible">
+        <div *ngIf="!visible">
+          <img src="assets/icons/menu.svg" class="navbar-profile-svg" alt="menu">
+        </div>
+        <div *ngIf="visible" >
+          <img src="assets/icons/close.svg" class="navbar-profile-svg" alt="close">
+        </div>
+        <div class="hamburger-menu-hover"></div>
+      </a>
+    </li>
+    <li>
+      <a class="navbar-menu__a" [routerLink]="['/user']" routerLinkActive="navbar-menu__a_active" #userLink>
+        <span>User Management</span>
+      </a>
+    </li>
+    <li>
+      <a class="navbar-menu__a" [routerLink]="['/group']" routerLinkActive="navbar-menu__a_active">
+        <span>Group Management</span>
+      </a>
+    </li>
+  </ul>
+  <div *ngIf="auth.isAuthenticated()" class="navbar-profile">
+    <svg-icon src="assets/icons/user.svg" class="navbar-profile-svg"
+                [svgStyle]="{'width.px':24 , 'height.px':24}"
+                [applyCss]="true">
+      </svg-icon>
+      <h3 class="navbar-profile__h3">{{auth.displayName}}</h3>
+  </div>
+  <div *ngIf="!auth.isAuthenticated()" class="navbar-profile navbar-profile_margin-left">
+    <svg-icon src="assets/icons/log-in.svg" class="navbar-profile-svg"
+              [svgStyle]="{'width.px':24 , 'height.px':24}"
+              [applyCss]="true">
+    </svg-icon>
+    <h3 class="navbar-profile__h3">Login Page</h3>
+  </div>
+  <div *ngIf="!auth.isAuthenticated()" class="navbar-profile">
+    <h3 class="navbar-profile__h3">The Project created as part of a test task for iba AG by Stepanova Elena</h3>
+  </div>
+</nav>
+<div class="divider"></div>
+<div class="content">
+  <aside [@slide] *ngIf="visible && auth.isAuthenticated()">
+    <ul class="left-side-menu">
+      <li class="left-side-menu__li">
+        <a class="left-side-menu__a" [routerLink]="['/group']">
+          <div>
+            <svg-icon src="assets/icons/agenda.svg" class="svg-hover"
+                      [svgStyle]="{'width.px':24 , 'height.px':24, 'margin-right.px': 10}"
+                      [applyCss]="true">
+            </svg-icon>
+            <span>Group Management</span>
+          </div>
+        </a>
+      </li>
+      <li class="left-side-menu__li">
+        <a class="left-side-menu__a" [routerLink]="['/user']">
+          <div>
+            <svg-icon src="assets/icons/user.svg" class="svg-hover"
+                      [svgStyle]="{'width.px':24 , 'height.px':24, 'margin-right.px': 10}"
+                      [applyCss]="true">
+            </svg-icon>
+            <span>User Management</span>
+          </div>
+        </a>
+      </li>
+      <li class="left-side-menu__li">
+        <a class="left-side-menu__a" (click)="auth.logout()">
+          <div>
+            <svg-icon src="assets/icons/log-out.svg" class="svg-hover"
+                      [svgStyle]="{'width.px':24 , 'height.px':24, 'margin-right.px': 10}"
+                      [applyCss]="true">
+            </svg-icon>
+            <span>Log Out</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </aside>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+</div>
+

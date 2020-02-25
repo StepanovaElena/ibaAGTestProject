@@ -1,0 +1,129 @@
+@import "./../../../../_library.less";
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: @color-background-nav;
+  min-height: 46px;
+
+  .navbar-profile {
+    display: flex;
+    align-items: center;
+    margin-right: 13px;
+
+    &__h3 {
+      color: #ffffff;
+      font-weight: normal;
+      font-size: 16px;
+      margin-left: 13px;
+    }
+  }
+
+  .navbar-profile_margin-left {
+    margin-left: 13px;
+  }
+}
+
+.navbar-profile-svg path {
+  fill: @color-white;
+}
+
+.navbar-menu {
+  display: flex;
+  padding-top: 5px;
+  text-decoration: none;
+  list-style-type: none;
+  min-height: 46px;
+
+  &__a {
+    position: relative;
+    text-decoration: none;
+    padding: 0 13px;
+    color: #ffffff;
+    height: 100%;
+    font-weight: normal;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      .hamburger-menu-hover {
+        display: block;
+      }
+    }
+  }
+
+  &__a_active {
+    background-color: @color-green;
+  }
+}
+
+.hamburger-menu-hover {
+  position: absolute;
+  background-color: @color-grey;
+  width: 35px;
+  height: 30px;
+  top: 4px;
+  left: 7px;
+  border-radius: 4px;
+  opacity: 0.3;
+  display: none;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  aside {
+    width: 230px;
+    min-height: 100%;
+    background-color: @color-background-nav;
+    border-right: 2px solid @color-green;
+    padding: 1rem 0;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    .left-side-menu {
+      list-style-type: none;
+      color: @color-green;
+      font-size: 14px;
+      font-weight: bold;
+
+      &__li {
+        margin-bottom: 0.8rem;
+      }
+
+      &__a {
+        text-decoration: none;
+        display: block;
+        padding: 0.8rem;
+        box-sizing: border-box;
+        cursor: pointer;
+        color: @color-green;
+
+        div {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+        }
+
+        &:hover {
+          background-color: @color-white;
+          box-shadow: inset 3px 0 0 @color-green;
+        }
+
+      }
+    }
+  }
+
+  section {
+    width: 100%;
+  }
+}

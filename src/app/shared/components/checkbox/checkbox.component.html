@@ -1,0 +1,13 @@
+<div [class.active]="state === true || desabled === true"
+     class="checkbox-card">
+  <label [class.checkbox-content]="state === true || desabled === true" class="checkbox-card__label">
+    <input
+           type="checkbox"
+           [value] = "value"
+           [checked]="state === true"
+           [disabled]="desabled"
+           (change)="setState(inputElement.checked)"
+           #inputElement>
+  </label>
+  <span *ngIf="label">{{label}}</span>
+</div>

@@ -1,0 +1,71 @@
+@import "./../../_library.less";
+@import "../user-create/user-create.component.less";
+
+.group-form {
+
+  &__div {
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  &__label {
+    display: none;
+  }
+
+  &__label_display {
+    display: block;
+    position: absolute;
+    font-size: 0.7rem;
+    font-weight: bold;
+    top: 5px;
+    left: 0.9rem;
+    z-index: 100;
+  }
+
+  &__input {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 14px;
+    padding: 15px;
+    outline: none;
+    font-family: @font-family;
+    border-radius: 4px;
+    border: none;
+    background-color: @input-bkg;
+    color: @color-grey;
+  }
+
+  &__input_has_value,
+  &__input.ng-touched,
+  &__input.ng-dirty {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  &__input[placeholder] {
+    color: @color-grey;
+    font-weight: bold;
+  }
+
+  &__p {
+    padding-top: 0.3rem;
+    font-size: 0.7rem;
+    color: @color-green;
+  }
+}
+
+.label_display {
+  display: block;
+  position: absolute;
+  font-size: 0.7rem;
+  font-weight: bold;
+  top: 5px;
+  left: 0.9rem;
+  z-index: 100;
+}
+
+.input_has_value {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}

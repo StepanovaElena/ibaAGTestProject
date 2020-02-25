@@ -1,0 +1,79 @@
+<header class="header">
+  <button class="button" (click)="updateButtonShown === false ? add($event) : update($event)" [disabled]="addButtonDisabled">
+    <div>
+      <svg-icon src="assets/icons/plus.svg" class="svg-hover"
+                [svgStyle]="{'width.px':20 , 'height.px':20}"
+                [applyCss]="true">
+      </svg-icon>
+      <span>Add</span>
+    </div>
+  </button>
+  <button class="button" (click)="delete($event)" [disabled]="deleteButtonDisabled">
+    <div>
+      <svg-icon src="assets/icons/delete.svg" class="svg-hover"
+                [svgStyle]="{'width.px':20 , 'height.px':20}"
+                [applyCss]="true">
+      </svg-icon>
+      <span>Delete</span>
+    </div>
+  </button>
+  <app-alert></app-alert>
+</header>
+
+<div class="content-wrapper">
+  <aside class="aside-nav">
+    <div class="search-box">
+      <label class="search-box__label" for="search">
+        <div class="search-icon">
+          <svg-icon src="assets/icons/search.svg" class="svg-hover"
+                    [svgStyle]="{'width.px':14 , 'height.px':14}"
+                    [applyCss]="true">
+          </svg-icon>
+        </div>
+        <input class="search-box__input" type="text" id="search" [(ngModel)]="search" (input)="displayOpen($event)">
+      </label>
+    </div>
+    <details class="details" [open]="open">
+      <summary class="summary summary_background-color summary_color_black summary_display_flex">
+        <svg-icon src="assets/icons/database.svg" class="svg-hover"
+                  [svgStyle]="{'width.px':20 , 'height.px':20, 'margin-right.px': 10}"
+                  [applyCss]="true">
+        </svg-icon>
+        <span>Local Users</span>
+      </summary>
+
+        <div *ngFor=" let user of users | filter:search:'login'" class="details-card">
+          <div class="details-card-link" [routerLink]="['/user/update/'+ user.id]" routerLinkActive="active">
+            <svg-icon src="assets/icons/user.svg" class="svg-hover"
+                      [svgStyle]="{'width.px':24 , 'height.px':24, 'margin-right.px': 10}"
+                      [applyCss]="true">
+            </svg-icon>
+            <span>{{user.login | lowercase}}</span>
+          </div>
+        </div>
+
+    </details>
+    <details class="details" [open]="open">
+      <summary class="summary summary_background-color summary_color_black summary_display_flex">
+        <svg-icon src="assets/icons/database.svg" class="svg-hover"
+                  [svgStyle]="{'width.px':20 , 'height.px':20, 'margin-right.px': 10}"
+                  [applyCss]="true">
+        </svg-icon>
+        <span>Local Groups</span>
+      </summary>
+      <div *ngFor="let group of groups| filter:search:'name'" class="details-card">
+        <div class="details-card-link" [routerLink]="['/group/update/'+ group.id]" routerLinkActive="active">
+          <svg-icon src="assets/icons/agenda.svg" class="svg-hover"
+                    [svgStyle]="{'width.px':24 , 'height.px':24, 'margin-right.px': 10}"
+                    [applyCss]="true">
+          </svg-icon>
+          <span>{{group.name}}</span>
+        </div>
+      </div>
+    </details>
+  </aside>
+  <div class="wrapper">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

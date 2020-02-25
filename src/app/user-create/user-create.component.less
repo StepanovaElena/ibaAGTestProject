@@ -1,0 +1,124 @@
+@import "./../../_library.less";
+
+.content-box {
+  background-color: @color-background;
+  box-shadow: -2px 2px 5px -3px @color-border;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+
+  .content-column {
+    flex: 100%/2;
+  }
+
+  .password-input-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      width: 100%;
+    }
+  }
+
+  &__div {
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+
+    &:first-child {
+      margin-right: 0.4rem;
+    }
+
+    &:last-child {
+      margin-left: 0.4rem;
+    }
+  }
+
+  &__div_margin-bottom {
+    margin-bottom: 0;
+  }
+
+  &__label {
+    display: none;
+  }
+
+  &__label_display {
+    display: block;
+    position: absolute;
+    font-size: 0.7rem;
+    font-weight: bold;
+    top: 5px;
+    left: 0.9rem;
+    z-index: 100;
+  }
+
+  &__input {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 14px;
+    padding: 15px;
+    outline: none;
+    font-family: @font-family;
+    border-radius: 4px;
+    border: none;
+    background-color: @input-bkg;
+    color: @color-grey;
+  }
+
+  &__input_has_value,
+  &__input.ng-touched,
+  &__input.ng-dirty {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  &__input[placeholder] {
+    color: @color-grey;
+    font-weight: bold;
+  }
+
+  &__input_background-color_white {
+    background-color: @color-white;
+  }
+
+  .form__input_shadow {
+    box-shadow: 1px 2px 2px 0 #9EA0A5;
+  }
+
+  &__p {
+    padding-top: 0.3rem;
+    font-size: 0.7rem;
+    color: @color-green;
+  }
+}
+
+.checkbox-card {
+  box-sizing: border-box;
+  border-bottom: 1px solid @input-bkg;
+  background-color: @color-background;
+  font-size: 0.9rem;
+  min-height: 54px;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+
+  &__label {
+    align-items: center;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-color: @input-bkg;
+    border-radius: 4px;
+    margin-right: 10px;
+
+    input {
+      display: none;
+    }
+  }
+}
+
+.checkbox-card_checked {
+  background-color: @checkbox-background-checked;
+}

@@ -1,0 +1,69 @@
+<section class="content-box">
+  <form class="form group-form" [formGroup]="form">
+    <div class="content-column">
+      <details class="details" open>
+        <summary class="summary summary_content summary_display_flex">Group Profile</summary>
+        <div class="details-content details-content_padding">
+          <div class="group-form__div">
+            <label class="group-form__label label_display"
+                   for="name"
+                   [ngClass]="{label_display:form.get('name').touched}">Group Name</label>
+            <input class="group-form__input" id="name" type="text" placeholder="Group Name" formControlName="name">
+            <div *ngIf="form.get('name').touched && form.get('name').invalid">
+              <p class="group-form__p" *ngIf="form.get('name').errors.minlength">Enter the correct group name!</p>
+              <p class="form__p" *ngIf="form.get('name').errors.uniqueName">Group with such name already existed!</p>
+            </div>
+          </div>
+        </div>
+      </details>
+      <details class="details">
+        <summary class="summary summary_content summary_display_flex">Group Permissions</summary>
+        <div *ngFor="let permission of permissions;"
+             class="details-content details-content_padding_none">
+          <app-checkbox [label]="permission.name" [value]="permission.id"
+                        (change)="addRemovePermission($event, permission.id)"></app-checkbox>
+        </div>
+      </details>
+      <details class="details">
+        <summary class="summary summary_content summary_display_flex">Effective Permissions</summary>
+        <div formArrayName="permissions">
+          <div
+            *ngFor="let permission of form.controls['permissions'].value; let i = index">
+            <app-checkbox
+              [value]="permission"
+              [label]="getLabel(permission)"
+              [desabled]="true"
+            ></app-checkbox>
+          </div>
+        </div>
+      </details>
+    </div>
+    <div class="content-column">
+      <details class="details" open>
+        <summary class="summary summary_content summary_display_flex">Group Membership</summary>
+        <div class="search-box">
+          <label class="search-box__label" for="searchGroup">
+            <div class="search-icon">
+              <svg-icon src="assets/icons/search.svg" class="svg-hover"
+                        [svgStyle]="{'width.px':14 , 'height.px':14}"
+                        [applyCss]="true">
+              </svg-icon>
+            </div>
+            <input class="search-box__input"
+                   type="text"
+                   id="searchGroup"
+                   [(ngModel)]="searchUser"
+                   [ngModelOptions]="{standalone: true}">
+          </label>
+        </div>
+        <div *ngFor="let user of users | filter:searchUser:'login'"
+             formGroupName="membership"
+             class="details-content details-content_padding_none">
+          <app-checkbox [label]="user.login | lowercase"
+                        [value]="user.id"
+                        (change)="addRemoveMembership($event, user.id)"></app-checkbox>
+        </div>
+      </details>
+    </div>
+  </form>
+</section>

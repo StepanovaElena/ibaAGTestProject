@@ -1,0 +1,113 @@
+<section class="content-box">
+  <form class="form user-form" [formGroup]="form">
+    <div class="content-column">
+      <details class="details" open>
+        <summary class="summary summary_content summary_display_flex">User Profile</summary>
+        <div class="details-content details-content_padding">
+          <div class="form__div">
+            <label class="form__label"
+                   for="login"
+                   [ngClass]="{form__label_display:form.get('login').touched}">Login Name</label>
+            <input class="form__input" id="login" type="text" placeholder="Login Name" formControlName="login">
+            <div *ngIf="form.get('login').touched && form.get('login').invalid">
+              <p class="form__p" *ngIf="form.get('login').errors">Enter the correct login name!</p>
+            </div>
+          </div>
+          <div class="form__div">
+            <label class="form__label"
+                   for="email"
+                   [ngClass]="{form__label_display:form.get('email').touched}">Email</label>
+            <input class="form__input" id="email" type="email" placeholder="Email" formControlName="email">
+            <div *ngIf="form.get('email').touched && form.get('email').invalid">
+              <p class="form__p" *ngIf="form.get('email').errors.email">Enter the correct email!</p>
+              <p class="form__p" *ngIf="form.get('email').errors.uniqueEmail">User with such email already existed!</p>
+            </div>
+          </div>
+          <div>
+            <div class="password-input-wrapper" formGroupName="password">
+              <div class="form__div form__div_margin-bottom">
+                <label class="form__label"
+                       for="password"
+                       [ngClass]="{form__label_display:form.get('password').get('passwordMain').touched}">Password</label>
+                <input class="form__input
+                                form__input_background-color_white
+                                form__input_shadow"
+                       id="password"
+                       type="password"
+                       formControlName="passwordMain"
+                       placeholder="Password">
+              </div>
+              <div class="form__div form__div_margin-bottom">
+                <label class="form__label"
+                       for="passwordConfirm"
+                       [ngClass]="{form__label_display:form.get('password').get('passwordConfirm').touched}"
+                >Confirm Password</label>
+                <input class="form__input
+                                form__input_background-color_white
+                                form__input_shadow"
+                       id="passwordConfirm"
+                       type="password"
+                       formControlName="passwordConfirm"
+                       placeholder="Confirm Password">
+              </div>
+            </div>
+            <div *ngIf="form.get('password').get('passwordConfirm').invalid &&
+                        form.get('password').get('passwordConfirm').touched ||
+                        form.get('password').errors">
+              <p class="form__p">Confirm password!</p>
+            </div>
+          </div>
+        </div>
+      </details>
+      <details class="details">
+        <summary class="summary summary_content summary_display_flex">User Permissions</summary>
+        <div *ngFor="let permission of permissions;"
+             class="details-content details-content_padding_none">
+          <app-checkbox [label]="permission.name" [value]="permission.id"
+                        (change)="addRemovePermission($event, permission.id)"></app-checkbox>
+        </div>
+      </details>
+      <details class="details">
+        <summary class="summary summary_content summary_display_flex">Effective Permissions</summary>
+        <div formArrayName="permissions">
+          <div
+            *ngFor="let permission of getAllEffectivePermissions(); let i = index">
+            <app-checkbox
+              [value]="permission"
+              [label]="getLabel(permission)"
+              [desabled]="true"
+            ></app-checkbox>
+          </div>
+        </div>
+      </details>
+    </div>
+    <div class="content-column">
+      <details class="details" open>
+        <summary class="summary summary_content summary_display_flex">Group Membership</summary>
+        <div class="search-box">
+          <label class="search-box__label" for="searchGroup">
+            <div class="search-icon">
+              <svg-icon src="assets/icons/search.svg" class="svg-hover"
+                        [svgStyle]="{'width.px':14 , 'height.px':14}"
+                        [applyCss]="true">
+              </svg-icon>
+            </div>
+            <input class="search-box__input"
+                   type="text"
+                   id="searchGroup"
+                   [(ngModel)]="searchGroup"
+                   [ngModelOptions]="{standalone: true}">
+          </label>
+        </div>
+        <div *ngFor="let group of groups | filter:searchGroup:'name'"
+             formGroupName="membership"
+             class="details-content details-content_padding_none">
+          <app-checkbox [label]="group.name"
+                        [value]="group.id"
+                        (change)="addRemoveMembership($event, group.id)"></app-checkbox>
+        </div>
+      </details>
+    </div>
+  </form>
+</section>
+

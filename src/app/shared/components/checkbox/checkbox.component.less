@@ -1,0 +1,40 @@
+@import "../../../../_library.less";
+
+.checkbox-content {
+  background-image: url(/assets/icons/tick.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.checkbox-card {
+  box-sizing: border-box;
+  border-bottom: 1px solid @input-bkg;
+  background-color: @color-background;
+  font-size: 0.9rem;
+  min-height: 54px;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+
+  &__label {
+    align-items: center;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-color: @input-bkg;
+    border-radius: 4px;
+    margin-right: 10px;
+
+    &:hover {
+      .checkbox-content
+    }
+
+    input {
+      display: none;
+    }
+  }
+}
+
+.active {
+  background-color: @checkbox-background-checked;
+}

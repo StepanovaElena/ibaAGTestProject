@@ -1,0 +1,64 @@
+@import "./../../_library.less";
+
+.header {
+  width: 100%;
+  padding: 0.8rem;
+  box-sizing: border-box;
+  background-color: @color-header;
+  position: relative;
+}
+
+.content-wrapper {
+  width: 100%;
+  display: flex;
+
+  .aside-nav {
+    width: 100%/4
+  }
+
+  .wrapper {
+    width: 100%;
+  }
+}
+
+.details-card {
+  padding-left: 2.1rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid @input-bkg;
+  background-color: @color-background;
+  font-size: 0.9rem;
+  min-height: 54px;
+
+  .details-card-link {
+    padding: 0.8rem 0.8rem;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: @color-green;
+      color: @color-white;
+
+      .svg-hover path {
+        fill: @color-white
+      }
+    }
+
+    &:active {
+      background-color: green;
+      outline: none;
+    }
+  }
+}
+
+.active {
+  background-color: @color-green;
+  color: @color-white;
+
+  .svg-hover path {
+    fill: @color-white
+  }
+}
+
+
+
+

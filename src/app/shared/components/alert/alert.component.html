@@ -1,0 +1,13 @@
+<div class="alert-wrapper slide-in-blurred-right">
+  <div *ngIf="text" class="alert"
+       [ngClass]="{
+      'alert-success': type === 'success',
+      'alert-warning': type === 'warning',
+      'alert-danger': type === 'danger'
+    }"
+  >
+    <p class="alert__p">{{text}}</p>
+  </div>
+</div>
+
+
