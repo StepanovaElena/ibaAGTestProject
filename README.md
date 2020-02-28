@@ -9,6 +9,8 @@ A small application as a potential part of a big prodject with admin panel.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+See also [Explanatory note](https://github.com/StepanovaElena/ibaAGTestProject/blob/master/NOTE.md).
+
 ### Prerequisites
 
 The project uses Firebase Realtime DataBase as beckend part. 
